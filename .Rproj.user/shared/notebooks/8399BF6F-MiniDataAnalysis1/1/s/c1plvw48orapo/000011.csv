@@ -1,0 +1,2 @@
+"0",""
+"0","hcmst |> summarize(mean(relationship_duration, na.rm = TRUE))"
