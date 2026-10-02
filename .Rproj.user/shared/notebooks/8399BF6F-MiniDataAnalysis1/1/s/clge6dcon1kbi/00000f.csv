@@ -1,0 +1,7 @@
+"0",""
+"0","# Keep only the columns needed for my research questions"
+"0","mm_tidy <- womensmarchmadness |>"
+"0","  select(school, year, reg_wins, tourney_wins, bid)"
+"0",""
+"0","# Show the first 6 rows of the tidied data"
+"0","head(mm_tidy)"

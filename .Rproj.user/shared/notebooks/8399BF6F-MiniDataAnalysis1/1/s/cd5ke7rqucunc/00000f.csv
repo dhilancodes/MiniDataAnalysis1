@@ -1,0 +1,4 @@
+"0",""
+"0","mm_tidy |>"
+"0","  drop_na() |>"
+"0","  summarize(across(where(is.numeric), list(mean = mean, min = min, max = max)))"
