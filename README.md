@@ -11,4 +11,14 @@ This repository contains my Mini Data Analysis for STAT 545A, which explores the
 
 ## How to use
 
-Open `MiniDataAnalysis1.Rproj` in RStudio, install the packages listed at the top of the `.qmd` file (including `diversedata` from GitHub), then open `MiniDataAnalysis1.qmd` and click **Render** to reproduce the report.
+Open `MiniDataAnalysis1.Rproj` in RStudio, install the packages listed at the top of the `.qmd` file (including `diversedata` from GitHub), then open `MiniDataAnalysis1.qmd` and click Render to reproduce the report.
+
+   
+## Generative AI Statement
+
+Generative AI was used to help me complete this assignment in this way:
+
+1. Setup and debugging: I got the error "there is no package called 'diversedata'" and Claude explained that I needed to install it from GitHub with `pak`. Claude also walked me through Git setup after I got "not a git repository" and "Authentication failed" errors
+
+I affirm that Generative AI was not used to generate text, code, or comments for
+my assessments.
