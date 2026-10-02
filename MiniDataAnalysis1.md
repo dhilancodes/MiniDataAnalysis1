@@ -1,5 +1,5 @@
 # Mini Data-Analysis: Deliverable 1
-Your name here
+Dhilan Abraham
 
 Total points available: 74
 
@@ -197,11 +197,13 @@ womensmarchmadness |> count(conference, sort = TRUE)
     10 Missouri Valley    48
     # ℹ 52 more rows
 
-Write your findings here. tourney finish: Tournament finishes fall into
-8 levels, from opening-round loss to champion. Losing in the first round
-is by far the most common result (967 appearances), while only 37
-appearances ended in a championship, one for each tournament from 1982
-to 2018.
+Write your findings here. The most common tournament finish is a
+first-round loss (967 appearances), and only 37 teams won the
+championship.
+
+Tournament teams won an average of about 22.9 regular-season games.
+
+The Southeastern Conference has the most tournament appearances (234).
 
 #### Data Set 2
 
@@ -211,6 +213,14 @@ to 2018.
 
 Write your findings here.
 
+Most people rated their relationship quality as excellent (686), and
+very few rated it very poor (5).
+
+Couples had been together for an average of about 27.2 years.
+
+Most people said their relationship did not change during the pandemic
+(1,017).
+
 <!----------------------------------------------------------------------------->
 
 ### 1.3: Choose 1 Data Set **(2 points)**
@@ -219,6 +229,10 @@ It’s time to choose only one data set. State the data set that you’ve
 chosen, and why you’ve chosen it.
 
 <!-------------------------- Start your work below ---------------------------->
+
+I chose womensmarchmadness because it has many numeric variables, like
+seed and regular-season wins, that make it easy to compare teams and
+explore what predicts tournament success.
 
 <!----------------------------------------------------------------------------->
 
@@ -235,6 +249,12 @@ change it later if needed.
 > gender?”
 
 <!-------------------------- Start your work below ---------------------------->
+
+(Primary) Is there a relationship between a team’s regular season wins
+and its number of tournament wins?
+
+(Secondary) Does this relationship differ between teams with an
+automatic bid and teams with an at-large bid?
 
 <!----------------------------------------------------------------------------->
 
@@ -257,7 +277,34 @@ values per variable. Be sure to output the table.
 
 ``` r
 ### Explore missingness here ###
+womensmarchmadness |>
+  summarize(across(everything(), ~ mean(is.na(.x)))) |>
+  pivot_longer(everything(), names_to = "variable", values_to = "prop_missing")
 ```
+
+    # A tibble: 20 × 2
+       variable           prop_missing
+       <chr>                     <dbl>
+     1 year                     0     
+     2 school                   0     
+     3 seed                     0     
+     4 conference               0     
+     5 conf_wins                0.0292
+     6 conf_losses              0.0292
+     7 conf_wins_pct            0.0292
+     8 conf_rank                0.0292
+     9 division                 0.954 
+    10 reg_wins                 0     
+    11 reg_losses               0     
+    12 reg_wins_pct             0     
+    13 bid                      0     
+    14 first_game_at_home       0     
+    15 tourney_wins             0     
+    16 tourney_losses           0     
+    17 tourney_finish           0     
+    18 total_wins               0     
+    19 total_losses             0     
+    20 total_wins_pct           0     
 
 <!----------------------------------------------------------------------------->
 
@@ -286,6 +333,12 @@ If missingness is not an issue, describe why.
 
 <!-------------------------- Start your work below ---------------------------->
 
+Missingness is not an issue for my analysis. The variables in my
+research questions (reg_wins, tourney_wins, and bid) have no missing
+values. The only variables with missing data are the conference
+variables (about 3% missing) and division (about 95% missing), which are
+not part of my research questions.
+
 <!----------------------------------------------------------------------------->
 
 ### 2.3: Tidy your Data **(10 points)**
@@ -309,6 +362,25 @@ Show the first 6 rows of the tidied data.
 
 <!-------------------------- Start your work below ---------------------------->
 
+``` r
+# Keep only the columns needed for my research questions
+mm_tidy <- womensmarchmadness |>
+  select(school, year, reg_wins, tourney_wins, bid)
+
+# Show the first 6 rows of the tidied data
+head(mm_tidy)
+```
+
+    # A tibble: 6 × 5
+      school         year reg_wins tourney_wins bid     
+      <chr>         <dbl>    <dbl>        <dbl> <chr>   
+    1 Arizona St.    1982       23            1 at-large
+    2 Auburn         1982       24            0 at-large
+    3 Cheyney        1982       24            4 at-large
+    4 Clemson        1982       20            0 at-large
+    5 Drake          1982       26            2 auto    
+    6 East Carolina  1982       19            0 at-large
+
 <!----------------------------------------------------------------------------->
 
 ### 2.4: Create a Table (10 points)
@@ -320,6 +392,19 @@ dropping the missing values if they exist.
 Show the outputted table.
 
 <!-------------------------- Start your work below ---------------------------->
+
+``` r
+mm_tidy |>
+  drop_na() |>
+  summarize(across(where(is.numeric), list(mean = mean, min = min, max = max)))
+```
+
+    # A tibble: 1 × 9
+      year_mean year_min year_max reg_wins_mean reg_wins_min reg_wins_max
+          <dbl>    <dbl>    <dbl>         <dbl>        <dbl>        <dbl>
+    1     2002.     1982     2018          22.9           10           34
+    # ℹ 3 more variables: tourney_wins_mean <dbl>, tourney_wins_min <dbl>,
+    #   tourney_wins_max <dbl>
 
 <!----------------------------------------------------------------------------->
 

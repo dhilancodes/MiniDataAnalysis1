@@ -3,7 +3,7 @@
     "path": "~/Downloads/MiniDataAnalysis1/MiniDataAnalysis1.qmd",
     "project_path": "MiniDataAnalysis1.qmd",
     "type": "quarto_markdown",
-    "hash": "3225761579",
+    "hash": "2860823396",
     "contents": "",
     "dirty": false,
     "created": 1790861783509.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "271,0",
-        "scrollLine": "255"
+        "cursorPosition": "3,22",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1790971226,
+    "lastKnownWriteTime": 1790971900,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1790971226352,
+    "last_content_update": 1790971900910,
     "read_only": false,
     "read_only_alternatives": []
 }
